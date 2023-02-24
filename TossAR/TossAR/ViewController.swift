@@ -70,15 +70,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //material.diffuse.contents = UIImage(named: "notebook.png")
         //ballNode.geometry!.materials = [material]
         
-        ballNode.position = SCNVector3(x: 0,y: 0.0,z: -3)
+        ballNode.position = SCNVector3(x: 0,y: 0,z: -2)
         
         sceneView.scene.rootNode.addChildNode(ballNode)
         let physicsShape = SCNPhysicsShape(node: ballNode, options: nil)
         let physicsBody =  SCNPhysicsBody(type: .dynamic, shape: physicsShape)
         
         ballNode.physicsBody = physicsBody
-        
         let forceVector:Float = 6
+        
         ballNode.physicsBody?.applyForce(SCNVector3(x: cameraPosition.x * forceVector, y: cameraPosition.y * forceVector, z: cameraPosition.z * forceVector), asImpulse: true)
         
         sceneView.scene.rootNode.addChildNode(ballNode)
@@ -94,12 +94,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             return
             
         }
-        basketNode.position = SCNVector3(x: 0,y: -3,z: -2)
+        basketNode.position = SCNVector3(x: 0,y: -2,z: -2)
         
         let physicsShape = SCNPhysicsShape(node: basketNode, options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.concavePolyhedron])
         let physicsBody = SCNPhysicsBody(type: .static, shape: physicsShape)
         
+        
         basketNode.physicsBody = physicsBody
+        
         
         sceneView.scene.rootNode.addChildNode(basketNode)
         horizontalAction(node: basketNode)
